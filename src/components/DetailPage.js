@@ -1,15 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
  const DetailPage = () => {
-    const {post} = useSelector((state) => state.detail);
-
+    const {detailPage} = useSelector((state) => state.detail);
+if(!detailPage) return <h1>Loading...</h1>
     return(
         <div>
-                    <div key={post.userId}>
-                
-                        <h3>{post.body}</h3>
+                    <div key={detailPage.userId}>
+                        <h2>{detailPage.title}</h2>
+                        <h3>{detailPage.body}</h3>
                     </div>
-                    
+ 
             
         </div>
     )

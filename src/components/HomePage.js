@@ -8,16 +8,16 @@ import '../App.css';
 const HomePage = () => {
     const {loading,posts,error} = useSelector(state => state.posts);
     const dispatch = useDispatch();
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(()=>{
         dispatch(fetchingData())
-    },[])
+    },[dispatch])
 
-    // function cardDetail(post){
-    //     dispatch(showPost(post));
-    //     navigate('/detail');
-    // }
+    function cardDetail(post){
+        dispatch(showPost(post));
+        navigate(`/item/${post.id}`);
+    }
 
     if(loading) return <h1>Loading...</h1>
     if(error) return <h1>{error}</h1>
@@ -30,7 +30,7 @@ const HomePage = () => {
             {
                 posts && posts.map((post) => {
                     return(
-                    <div key={post.id} className="container" >
+                    <div key={post.id} className="container" onClick={()=>cardDetail(post)} >
                         <div>
                         <img src={`https://picsum.photos/200?random=${post.id}`} alt="post.title"/>
                         </div>
